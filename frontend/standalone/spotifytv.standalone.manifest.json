@@ -1,0 +1,51 @@
+{
+  "source_sha256": "bccd77047ca9bcda924c1de15f0d9990ce9eb420a5ea0733f5f75f27a47d5ebb",
+  "source_size": 2144073,
+  "patched_sha256": "a1657746d0b5d6df072fe95ee34d20fa6db9665578bc746eefc1d1aad05b52b4",
+  "patched_size": 2147753,
+  "shim_sha256": "14918cbf8c58c79ddc98738dff59058446ebb2aa88255ea9a9002c6b78c3e9ac",
+  "standalone_mode": true,
+  "edits": [
+    {
+      "name": "explicit-standalone-mode",
+      "source_byte_offset": 67,
+      "source_length": 28,
+      "replacement_length": 65
+    },
+    {
+      "name": "install-authenticated-session-shim",
+      "source_byte_offset": 1312632,
+      "source_length": 16,
+      "replacement_length": 3139
+    },
+    {
+      "name": "standalone-needs-linking",
+      "source_byte_offset": 1479058,
+      "source_length": 61,
+      "replacement_length": 147
+    },
+    {
+      "name": "skip-sony-additional-scope",
+      "source_byte_offset": 1544019,
+      "source_length": 116,
+      "replacement_length": 155
+    },
+    {
+      "name": "authenticated-deeplinks",
+      "source_byte_offset": 1544601,
+      "source_length": 314,
+      "replacement_length": 669
+    },
+    {
+      "name": "diagnostic-controller-export",
+      "source_byte_offset": 1556963,
+      "source_length": 20,
+      "replacement_length": 60
+    }
+  ],
+  "limitations": [
+    "Tested on console with firmware 13.00",
+    "Native token/profile errors retain original behavior",
+    "Does not modify system music-card control center"
+  ]
+}

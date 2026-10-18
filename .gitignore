@@ -1,0 +1,39 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+credentials/
+secrets/
+oauth-private/
+auth-test/
+*.pem
+*.key
+
+# Proprietary packages and diagnostic captures
+*.pkg
+*.pup
+*.hbc
+*.dump
+*.core
+cache-salt.bin
+cleanup/
+
+# Local build outputs and temporary files
+build/
+dist/
+target/
+tmp/
+__pycache__/
+*.pyc
+*.tmp
+.DS_Store
+Thumbs.db
+frontend/spotifytv.js
+payload/*.elf
+
+# Environment-owned mounts
+.agents/
+.codex/
+.aws/
+frontend/standalone/spotifytv.standalone.js
+frontend/cache-analysis/spotifytv-record.original
