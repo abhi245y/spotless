@@ -12,8 +12,6 @@ background playback with the console's own music controls.
 
 [![Spotless running on a PS5](assets/demo/spotless-demo.gif)](assets/demo/spotless-demo.mp4)
 
-The preview is silent. [Watch the 1080p MP4 with audio](assets/demo/spotless-demo.mp4).
-
 ## Features
 
 - Spotify sign-in with the on-screen code or Spotify Connect from your phone
