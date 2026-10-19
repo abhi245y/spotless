@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-preview
+## 0.2.0-beta
 
 First public release.
 

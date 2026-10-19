@@ -36,7 +36,7 @@ def publish_release(directory):
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / name, target)
     metadata = {'schema': 2, 'kind': 'local', 'filename': 'Spotless.elf', 'name': 'Spotless',
-                'version': '0.2.0-preview', 'description': 'Standalone Spotify UI patch. Stock Spotify sign-in.',
+                'version': '0.2.0-beta', 'description': 'Standalone Spotify UI patch. Stock Spotify sign-in.',
                 'checksum': hashlib.sha256((directory / 'Spotless.elf').read_bytes()).hexdigest()}
     (directory / 'Spotless.meta.json').write_text(json.dumps(metadata, indent=2) + '\n')
     manifest = {str(path.relative_to(directory)): hashlib.sha256(path.read_bytes()).hexdigest()
