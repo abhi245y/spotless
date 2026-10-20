@@ -30,10 +30,20 @@ background playback with the console's own music controls.
 | Spotify | **01.017.000** (PPSA05688) |
 | Loader | Any ELF loader or Payload Manager |
 
-Only the configuration above has been tested. Spotify 01.017.000 requires firmware
-12.00 or later, but other firmware versions have not been confirmed yet. Reports
-are welcome. Spotless checks the cached frontend before patching and refuses
-versions it does not recognise, so an unsupported app version fails safely.
+Only the configuration above has been tested by the maintainer. Spotify 01.017.000
+requires firmware 12.00 or later. Spotless checks the cached frontend before
+patching and refuses versions it does not recognise, so an unsupported app version
+fails safely.
+
+### Community reports
+
+Tried Spotless on your console?
+[Submit a compatibility report](https://github.com/abhi245y/spotless/issues/new?template=compat_report.yml);
+this table updates automatically.
+
+<!-- compat:start -->
+_No community reports yet._
+<!-- compat:end -->
 
 ## Known limitations
 

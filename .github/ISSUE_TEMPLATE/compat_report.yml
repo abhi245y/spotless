@@ -1,0 +1,42 @@
+name: Compatibility report
+description: Tell others whether Spotless worked on your firmware
+title: "[Compat] "
+labels: [compat-report]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Reports are counted automatically in the README compatibility table.
+        For a problem you need help with, open a bug report instead.
+  - type: input
+    id: firmware
+    attributes:
+      label: PS5 firmware
+      placeholder: "13.00"
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options:
+        - Works
+        - Partially works
+        - Does not work
+    validations:
+      required: true
+  - type: input
+    id: spotless
+    attributes:
+      label: Spotless version
+      placeholder: "0.2.0-beta"
+  - type: input
+    id: loader
+    attributes:
+      label: Loader
+      placeholder: "Payload Manager, elfldr, ..."
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything that did not work, or extra steps you needed. No credentials or logs with account data.
