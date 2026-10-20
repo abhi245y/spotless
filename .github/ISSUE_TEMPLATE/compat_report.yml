@@ -25,11 +25,15 @@ body:
         - Does not work
     validations:
       required: true
-  - type: input
+  - type: dropdown
     id: spotless
     attributes:
       label: Spotless version
-      placeholder: "0.2.0-beta"
+      options:
+        # releases:start (updated by .github/workflows/compat.yml)
+        - 0.2.0-beta
+        # releases:end
+        - Built from source
   - type: input
     id: loader
     attributes:

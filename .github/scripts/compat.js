@@ -39,7 +39,18 @@ function update(readme, body) {
   return readme.slice(0, a + START.length) + '\n' + body + '\n' + readme.slice(b);
 }
 
-module.exports = { parse, table, update };
+// Rewrites the version dropdown options in the issue form from published releases.
+function versions(template, releases) {
+  const lines = template.split('\n');
+  const a = lines.findIndex(l => l.includes('# releases:start'));
+  const b = lines.findIndex(l => l.includes('# releases:end'));
+  if (a < 0 || b < a) throw new Error('release markers missing from issue template');
+  const indent = lines[a].match(/^\s*/)[0];
+  const opts = releases.filter(r => !r.draft).map(r => `${indent}- ${r.tag_name.replace(/^v/, '')}`);
+  return [...lines.slice(0, a + 1), ...opts, ...lines.slice(b)].join('\n');
+}
+
+module.exports = { parse, table, update, versions };
 
 if (require.main === module) {
   const assert = require('assert');
@@ -53,5 +64,8 @@ if (require.main === module) {
   assert.match(t, /\| 09\.00 \| 0 \| 1 \| 0 \|/);
   assert.ok(t.indexOf('12.40') < t.indexOf('09.00'), 'newest firmware first');
   assert.strictEqual(update(`x\n${START}\nold\n${END}\ny`, 'new'), `x\n${START}\nnew\n${END}\ny`);
+  const tpl = '  options:\n    # releases:start\n    - 0.1.0\n    # releases:end\n    - Built from source';
+  assert.strictEqual(versions(tpl, [{ tag_name: 'v0.3.0' }, { tag_name: 'v0.2.9', draft: true }, { tag_name: 'v0.2.0-beta' }]),
+    '  options:\n    # releases:start\n    - 0.3.0\n    - 0.2.0-beta\n    # releases:end\n    - Built from source');
   console.log('ok');
 }

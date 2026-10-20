@@ -3,6 +3,8 @@ name: Compatibility table
 on:
   issues:
     types: [opened, edited, closed, reopened, deleted, labeled, unlabeled]
+  release:
+    types: [published, edited, deleted]
   workflow_dispatch:
 
 permissions:
@@ -14,7 +16,7 @@ concurrency:
 
 jobs:
   update:
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.labels.*.name, 'compat-report') || github.event.label.name == 'compat-report'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'compat-report') || github.event_name == 'issues' && github.event.label.name == 'compat-report'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,4 +35,26 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
           git commit -am "docs: update community compatibility table"
+          git pull --rebase
+          git push
+
+  versions:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { versions } = require('./.github/scripts/compat.js');
+            const releases = await github.paginate(github.rest.repos.listReleases, { ...context.repo, per_page: 100 });
+            const path = '.github/ISSUE_TEMPLATE/compat_report.yml';
+            fs.writeFileSync(path, versions(fs.readFileSync(path, 'utf8'), releases));
+      - run: |
+          git diff --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore: update release versions in compatibility form"
+          git pull --rebase
           git push
