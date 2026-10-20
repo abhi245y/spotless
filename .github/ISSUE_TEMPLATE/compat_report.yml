@@ -16,12 +16,11 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: result
+    id: status
     attributes:
-      label: Result
+      label: Status
       options:
         - Works
-        - Partially works
         - Does not work
     validations:
       required: true
