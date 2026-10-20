@@ -42,9 +42,9 @@ Tried Spotless on your console?
 this table updates automatically.
 
 <!-- compat:start -->
-| Firmware | Works | Partially | Does not work | Reports |
-| --- | --- | --- | --- | --- |
-| 09.60 | 1 | 0 | 0 | [view](https://github.com/abhi245y/spotless/issues?q=label%3Acompat-report%20%2209.60%22) |
+| Firmware | Status | Reports |
+| --- | --- | --- |
+| 9.60 | Works | [1 works, 0 does not](https://github.com/abhi245y/spotless/issues?q=label%3Acompat-report%20%229.60%22) |
 <!-- compat:end -->
 
 ## Known limitations
