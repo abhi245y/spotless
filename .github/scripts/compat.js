@@ -10,9 +10,10 @@ function field(body, label) {
 
 function parse(issue) {
   const fw = field(issue.body, 'PS5 firmware').match(/\b(\d{1,2})\.(\d{2})\b/);
-  const status = STATUS[field(issue.body, 'Status')];
+  // 'Result' is the heading used by reports filed before the form was renamed.
+  const status = STATUS[field(issue.body, 'Status') || field(issue.body, 'Result')];
   if (!fw || status === undefined) return null;
-  return { firmware: `${fw[1].padStart(2, '0')}.${fw[2]}`, status };
+  return { firmware: `${Number(fw[1])}.${fw[2]}`, status };
 }
 
 function table(issues, repo) {
@@ -64,10 +65,10 @@ if (require.main === module) {
   const ok = n => ({ body: `### PS5 firmware\n\nFW 12.40\n\n### Status\n\n${n}` });
   assert.deepStrictEqual(parse(ok('Works')), { firmware: '12.40', status: 0 });
   const t = table([ok('Works'), ok('Does not work'), { ...ok('Works'), state_reason: 'not_planned' },
-    { body: '### PS5 firmware\n\n9.00\n\n### Status\n\nDoes not work' }], 'o/r');
+    { body: '### PS5 firmware\n\n09.00\n\n### Result\n\nDoes not work' }], 'o/r');
   assert.match(t, /\| 12\.40 \| Works \| \[1 works, 1 does not\]/);
-  assert.match(t, /\| 09\.00 \| Does not work \| \[0 works, 1 does not\]/);
-  assert.ok(t.indexOf('12.40') < t.indexOf('09.00'), 'newest firmware first');
+  assert.match(t, /\| 9\.00 \| Does not work \| \[0 works, 1 does not\]/);
+  assert.ok(t.indexOf('12.40') < t.indexOf('9.00'), 'newest firmware first');
   assert.strictEqual(update(`x\n${START}\nold\n${END}\ny`, 'new'), `x\n${START}\nnew\n${END}\ny`);
   const tpl = '  options:\n    # releases:start\n    - 0.1.0\n    # releases:end\n    - Built from source';
   assert.strictEqual(versions(tpl, [{ tag_name: 'v0.3.0' }, { tag_name: 'v0.2.9', draft: true }, { tag_name: 'v0.2.0-beta' }]),
