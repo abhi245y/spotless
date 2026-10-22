@@ -46,6 +46,7 @@ this table updates automatically.
 | --- | --- | --- |
 | 13.60 | Works | [1 works, 0 does not](https://github.com/abhi245y/spotless/issues?q=label%3Acompat-report%20%2213.60%22) |
 | 12.70 | Works | [1 works, 0 does not](https://github.com/abhi245y/spotless/issues?q=label%3Acompat-report%20%2212.70%22) |
+| 11.20 | Does not work | [0 works, 1 does not](https://github.com/abhi245y/spotless/issues?q=label%3Acompat-report%20%2211.20%22) |
 | 9.60 | Works | [1 works, 0 does not](https://github.com/abhi245y/spotless/issues?q=label%3Acompat-report%20%229.60%22) |
 <!-- compat:end -->
 
